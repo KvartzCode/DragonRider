@@ -259,7 +259,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.04
+  m_Intensity: 0.1
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -317,13 +317,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 840824483}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.28304756, y: 0.36222512, z: -0.59450346, w: 0.65972936}
+  m_LocalRotation: {x: -0.13482505, y: 0.43948218, z: -0.791088, w: 0.4035561}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 3.28, y: 54.669, z: 637.65}
+  m_LocalEulerAnglesHint: {x: 35.91, y: 44.533, z: 609.171}
 --- !u!114 &840824486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -717,6 +717,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 145073916827406051, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
+      propertyPath: m_MoveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6925447202669838331, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
       propertyPath: m_Name
       value: XR Rig
@@ -764,8 +768,31 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6925447202669838331, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2973105085566825195}
   m_SourcePrefab: {fileID: 100100000, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
+--- !u!1 &2973105085566825194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6925447202669838331, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
+  m_PrefabInstance: {fileID: 2973105085566825193}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2973105085566825195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2973105085566825194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f475daff418288a488c60290d208e05b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationZ: 40
+  rotationX: 40
+  verticalRotationAction: {fileID: -3831018955537714481, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
