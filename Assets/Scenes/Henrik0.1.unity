@@ -224,7 +224,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.111, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -717,10 +717,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 145073916827406051, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
-      propertyPath: m_MoveSpeed
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6925447202669838331, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
       propertyPath: m_Name
       value: XR Rig
@@ -731,7 +727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8367223657354736773, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.2660115
+      value: 28.82
       objectReference: {fileID: 0}
     - target: {fileID: 8367223657354736773, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
       propertyPath: m_LocalPosition.z
@@ -768,31 +764,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6925447202669838331, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2973105085566825195}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
---- !u!1 &2973105085566825194 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6925447202669838331, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
-  m_PrefabInstance: {fileID: 2973105085566825193}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2973105085566825195
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2973105085566825194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f475daff418288a488c60290d208e05b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationZ: 40
-  rotationX: 40
-  verticalRotationAction: {fileID: -3831018955537714481, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
