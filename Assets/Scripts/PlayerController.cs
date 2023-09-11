@@ -4,58 +4,110 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerController : MonoBehaviour
 {
-    public float rotationZ = 40f;
-    public float rotationX = 40f;
-    private float rotX;
-    private float rotY;
-    private float rotZ;
+    public float maxSpeed;
+    public float minSpeed;
 
+    public float startSpeed;
+    public float currentSpeed;
+    public float acceleration = 1f;
+
+    public float rollSpeed = 1f;
+    public float yawSpeed = 1f;
+    public float pitchSpeed = 1f;
+
+    public float rollMovement = 15f;
+    public float rollMovementRotationX = 0.012f;
+    public float rollMovementRotationY = 1.5f;
+    public float rollMovementPositionY = 0.1f;
+
+    private Vector2 rigthStickControllerInput;
+    private Vector2 leftStickControllerInput;
 
     [SerializeField]
-    private InputActionReference verticalRotationAction;
-    float lastInput = 0.0f;
-    
+    private InputActionReference rotationAction;
+    [SerializeField]
+    private InputActionReference movementAction;
 
-
-    float continousRotation;
 
     // Start is called before the first frame update
     void Start()
     {
-        verticalRotationAction.action.performed += OnVerticalRotation;
+        rotationAction.action.performed += GetRightStickControllerInput;
+        movementAction.action.performed += GetLeftStickControllerInput;
+        
+
+        currentSpeed = startSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Vector3 rotation = new Vector3(0, lastInput, 0);
-        //transform.Rotate(rotation);
+        DragonMovement();
+        DragonRollMovement();
+        if(leftStickControllerInput != Vector2.zero && currentSpeed < maxSpeed)
+        {
+            currentSpeed += acceleration * leftStickControllerInput.y;
+        }
     }
 
-    public void OnVerticalRotation(InputAction.CallbackContext value)
+    private void DragonRollMovement()
     {
-        //Vector2 input = value.ReadValue<Vector2>();
-        //    lastInput = input.x;
-        //    transform.Rotate(input.y * rotationX, input.x, -input.x * rotationZ, Space.Self);
-        //    Debug.Log(input.ToString());
+        float angle = transform.localEulerAngles.z;
 
-        Vector2 input = value.ReadValue<Vector2>();
-        lastInput = input.x;
+        float yRotationMultiplier = rollMovement * rollMovementRotationY;
+        float xRotationMultiplier = rollMovement * rollMovementRotationX;
+        float yPositionMultiplier = rollMovement * rollMovementPositionY;
 
-        rotZ = input.x * -rotationZ;
-        rotX = input.y * rotationX;
-        rotY += input.x * 2;
-        rotX += input.y * 2;
+        if (angle >= 270f && angle < 360f) // Right side up DONE
+        {
+            float normalizedAngle = (angle - 270f) / 90;
+            float invert = 1f - normalizedAngle;
 
+            transform.Rotate(Vector3.up * (yRotationMultiplier * invert) * Time.deltaTime);
+            transform.Rotate(Vector3.right * (xRotationMultiplier * -invert) * pitchSpeed * Time.deltaTime);
+            transform.Translate(transform.up * (yPositionMultiplier * invert) * Time.deltaTime);
+        }
+        else if (angle > 0f && angle < 90f) // Left side up DONE
+        {
+            float normalizedAngle = angle / 90f;
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rotX, rotY, rotZ), Time.deltaTime);
-        Debug.Log(input.ToString());
-        //if (input != Vector2.zero)
-        //{
-        //}
+            transform.Rotate(-Vector3.up * (yRotationMultiplier * normalizedAngle) * Time.deltaTime);
+            transform.Rotate(Vector3.right * (xRotationMultiplier * -normalizedAngle) * pitchSpeed * Time.deltaTime);
+            transform.Translate(transform.up * (yPositionMultiplier * normalizedAngle) * Time.deltaTime);
+        }
+        else if (angle >= 90f && angle < 180f) // Right side down
+        {
+            float normalizedAngle = (angle - 90f) / 90f;
+            float invert = 1f - normalizedAngle;
 
+            transform.Translate(transform.up * (yRotationMultiplier * invert) * Time.deltaTime);
+            transform.Rotate(Vector3.right * (xRotationMultiplier * -invert) * pitchSpeed * Time.deltaTime);
+        }
+        else if (angle >= 180f && angle < 270f) // Left side down DONE
+        {
+            float normalizedAngle = (angle - 180f) / 90f;
 
+            transform.Translate(transform.up * (yRotationMultiplier * normalizedAngle) * Time.deltaTime);
+            transform.Rotate(Vector3.right * (xRotationMultiplier * -normalizedAngle) * pitchSpeed * Time.deltaTime);
+        }
+    }
+
+    public void DragonMovement()
+    {
+        transform.Translate(new Vector3(0, 0, currentSpeed * Time.deltaTime));
+        transform.Rotate(new Vector3(rigthStickControllerInput.y * yawSpeed, 0, -rigthStickControllerInput.x * rollSpeed));
+    }
+
+    public void GetRightStickControllerInput(InputAction.CallbackContext value)
+    {
+        rigthStickControllerInput = value.ReadValue<Vector2>();
+    }
+
+    public void GetLeftStickControllerInput(InputAction.CallbackContext value) 
+    {
+        leftStickControllerInput = value.ReadValue<Vector2>();
     }
 }
