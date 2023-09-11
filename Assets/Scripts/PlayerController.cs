@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public float startSpeed;
     public float currentSpeed;
     public float acceleration = 1f;
+    public float deceleration = 1f;
 
     public float rollSpeed = 1f;
     public float yawSpeed = 1f;
@@ -45,12 +46,14 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        DragonMovement();
-        DragonRollMovement();
-        if(leftStickControllerInput != Vector2.zero && currentSpeed < maxSpeed)
+        if(leftStickControllerInput == Vector2.zero)
         {
             currentSpeed += acceleration * leftStickControllerInput.y;
         }
+        DragonMovement();
+        DragonRollMovement();
+
+        Debug.Log(leftStickControllerInput);
     }
 
     private void DragonRollMovement()

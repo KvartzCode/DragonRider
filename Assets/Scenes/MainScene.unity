@@ -8527,6 +8527,26 @@ PrefabInstance:
       propertyPath: m_MoveSpeed
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 5593291345988902314, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
+      propertyPath: maxSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593291345988902314, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
+      propertyPath: minSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593291345988902314, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
+      propertyPath: startSpeed
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 5593291345988902314, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
+      propertyPath: movementAction
+      value: 
+      objectReference: {fileID: -2065424488526391004, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 5593291345988902314, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
+      propertyPath: rotationAction
+      value: 
+      objectReference: {fileID: -3831018955537714481, guid: c348712bda248c246b8c49b3db54643f, type: 3}
     - target: {fileID: 5783809995785621628, guid: 78f0012e554a57a4f86e69c6d5e5bf11, type: 3}
       propertyPath: far clip plane
       value: 20000
