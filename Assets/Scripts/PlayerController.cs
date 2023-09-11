@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -46,14 +47,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(leftStickControllerInput == Vector2.zero)
+        if(leftStickControllerInput != Vector2.zero)
         {
-            currentSpeed += acceleration * leftStickControllerInput.y;
+            if (currentSpeed < maxSpeed && leftStickControllerInput.y > 0)
+            {
+                currentSpeed += acceleration * leftStickControllerInput.y;
+            }
+
+            if(currentSpeed > minSpeed && leftStickControllerInput.y < 0) 
+            {
+                currentSpeed += acceleration * leftStickControllerInput.y;
+            }
         }
         DragonMovement();
         DragonRollMovement();
 
-        Debug.Log(leftStickControllerInput);
     }
 
     private void DragonRollMovement()
