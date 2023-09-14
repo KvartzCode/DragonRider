@@ -1823,9 +1823,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f475daff418288a488c60290d208e05b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationZ: 40
-  rotationX: 40
-  verticalRotationAction: {fileID: -3831018955537714481, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  maxSpeed: 0
+  minSpeed: 0
+  startSpeed: 0
+  currentSpeed: 0
+  acceleration: 1
+  deceleration: 1
+  rollSpeed: 1
+  yawSpeed: 1
+  pitchSpeed: 1
+  rollMovement: 15
+  rollMovementRotationX: 0.012
+  rollMovementRotationY: 1.5
+  rollMovementPositionY: 0.1
+  rotationAction: {fileID: 0}
+  movementAction: {fileID: 0}
 --- !u!1 &7316901408328441323
 GameObject:
   m_ObjectHideFlags: 0
