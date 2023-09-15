@@ -109,8 +109,8 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RefractionSpeed: 1
-    - _RefractionStrength: 1
+    - _RefractionSpeed: 0.06
+    - _RefractionStrength: 0.54
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -124,8 +124,8 @@ Material:
     - _foamscale: 1
     - _foamspeed: 1
     - _highfrequency: 1
-    - _normal_strength: 1
-    - _smoothness: 1
+    - _normal_strength: 1.57
+    - _smoothness: 0.51
     - _waveamplitude: 1
     - _wavespeed: 1
     m_Colors:
@@ -135,8 +135,8 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _SurfaceColour: {r: 0.44388568, g: 0.8070325, b: 0.8962264, a: 0}
-    - _foamcolor: {r: 1, g: 1, b: 1, a: 0}
-    - _refractionscale: {r: 1, g: 1, b: 0, a: 0}
+    - _foamcolor: {r: 1, g: 1, b: 1, a: 0.39607844}
+    - _refractionscale: {r: 1.09, g: 1.28, b: 0, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &765353121718218706
 MonoBehaviour:
