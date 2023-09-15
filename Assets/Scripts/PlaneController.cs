@@ -1,189 +1,92 @@
 using System.Collections;
 using System.Collections.Generic;
-//using System.Diagnostics;
-using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
-
 
 public class PlaneController : MonoBehaviour
 {
-
-    public float maxSpeed;
-    public float minSpeed;
-
-    public float startSpeed;
-    public float currentSpeed;
-    public float acceleration = 1f;
-    public float deceleration = 1f;
-
-    public float rollSpeed = 1f;
-    public float yawSpeed = 1f;
-    public float pitchSpeed = 1f;
-
-    public float rollMovement = 1f; // in proportion to scale
-    public float rollMovementRotationX = 0.012f;
-    public float rollMovementRotationY = 1.5f;
-    public float rollMovementPositionY = 0.1f;
-
     [SerializeField]
-    GameObject horizontalStick;
-    [SerializeField]
-    GameObject verticalStick;
+    public StickController stickController;
 
-    public float verticalRotation;
-    public float horizontalRotation;
+    public float rollSpeed = 45f;
+    public float yawSpeed = 30f;
+    public float forwardSpeed = 10f;
+    public float pitchSpeed = 30f;
 
+    public float yawAngle = 0f;
 
-    private float lateralPosition = 0f;
+    private float initialHeight;
 
-    private Vector2 rigthStickControllerInput;
-    private Vector2 leftStickControllerInput;
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-       
-
-        currentSpeed = startSpeed;
+        initialHeight = transform.position.y;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //if (leftStickControllerInput != Vector2.zero)
-        //{
-        //    if (currentSpeed < maxSpeed && leftStickControllerInput.y > 0)
-        //    {
-        //        currentSpeed += acceleration * leftStickControllerInput.y;
-        //    }
-
-        //    if (currentSpeed > minSpeed && leftStickControllerInput.y < 0)
-        //    {
-        //        currentSpeed += acceleration * leftStickControllerInput.y;
-        //    }
-        //}
-
-        GetVerticalStick();
-        GetHorizontalStick();
-
-        PlaneMovement();
-        PlaneRollMovement();
-
+        UpdateRotation();
+        UpdateMovement();
     }
 
-    private void PlaneRollMovement()
+    public void UpdateRotation()
     {
-        float rollAngle = transform.localEulerAngles.z;
+        
 
-        //Normalize the roll angle to [0, 360) range
-        rollAngle = (rollAngle + 360f) % 360f;
+        float rollInput = stickController.GetHorizontalStick();
+        //float pitchInput = Input.GetAxis("Vertical");
+        float pitchInput = stickController.GetVerticalStick();
 
-        float normalizedRollAngle = rollAngle / 90f; // Normalize to [0, 4) range
+        float rollAngle = -rollInput * rollSpeed * Time.deltaTime;
 
-        float rollRotationMultiplier = rollMovement * rollMovementRotationY;
+        float pitchAngle = -pitchInput * pitchSpeed * Time.deltaTime;
 
-        //Target roll rotation
-        Quaternion rollRotation = Quaternion.Euler(0f, 0f, normalizedRollAngle * 90f);
+        float angle = transform.localEulerAngles.z;
 
-        //Apply roll rotation
-        Quaternion newRotation = Quaternion.LookRotation(transform.forward, Vector3.up) * rollRotation;
+        if(angle > 0 && angle < 90f)
+        {
+            float normalizedAngle = angle / 90f;
+            yawAngle = -normalizedAngle * yawSpeed * Time.deltaTime;
+            
+        }
 
-        transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rollSpeed);
+        if (angle >= 270f && angle < 360f) // Right side up DONE
+        {
+            float normalizedAngle = (angle - 270) / 90;
+            yawAngle = (1 - normalizedAngle) * yawSpeed * Time.deltaTime;
+        }
 
-        //Position change proportionally to the roll angle
-        float rollDisplacement = normalizedRollAngle * rollRotationMultiplier * Time.deltaTime;
+        if(angle >= 90 && angle < 180)
+        {
+            float normalizedAngle = (angle - 90) / 90f;
+            yawAngle = -(1 - normalizedAngle) * yawSpeed * Time.deltaTime;
+        }
 
-        //Update position
-        lateralPosition += rollDisplacement;
+        if(angle > 180 && angle < 270)
+        {
+            float normalizedAngle = (angle - 180) / 90;
+            yawAngle = normalizedAngle * yawSpeed * Time.deltaTime;
+        }
 
-        //Ensure the lateral position stays within bounds (-1 to 1)
-        lateralPosition = Mathf.Clamp(lateralPosition, -1f, 1f);
+        //Rotate
+        Vector3 eulerAngles = transform.localRotation.eulerAngles;
+        eulerAngles.x += pitchAngle;
+        eulerAngles.y += yawAngle;
+        eulerAngles.z += rollAngle;
+        transform.rotation = Quaternion.Euler(eulerAngles);
 
-        //Calculate the lateral shift in local coordinates
-        Vector3 localShift = Vector3.right * lateralPosition * rollMovementPositionY;
-
-        //Apply the lateral shift in world coordinates
-        transform.position += localShift;
-    }
-
-
-
-
-    public void PlaneMovement()
-    {
-        transform.Translate(new Vector3(0, 0, currentSpeed * Time.deltaTime));
-        transform.Rotate(new Vector3(-verticalRotation * yawSpeed, 0, -horizontalRotation * rollSpeed));
-    }
-
-    //public void GetHorizontalStick()
-    //{
-    //    float angle = horizontalStick.transform.rotation.eulerAngles.z;
-    //    if (angle >= 270)
-    //    {
-    //        angle -= 270f;
-    //    }
-    //    else
-    //    {
-    //        angle += 90;
-    //    }
-    //    float angleRadians = angle * Mathf.Deg2Rad;
-    //    horizontalRotation = Mathf.Cos(angleRadians);
-    //}
-
-    public void GetHorizontalStick()
-    {
-        float angle = horizontalStick.transform.rotation.eulerAngles.z;
-
-        // Normalize angle
-        angle = (angle + 360) % 360;
-
-        //offset angle
-        float offsetAngle = (angle + 90f) % 360;
-
-        float angleRadians = offsetAngle * Mathf.Deg2Rad;
-        horizontalRotation = Mathf.Cos(angleRadians);
-
-        //Debug.Log(angle);
-        //Debug.Log(offsetAngle);
-        //Debug.Log(horizontalRotation);
-    }
-
-
-
-    //public void GetVerticalStick()
-    //{
-    //    float angle = verticalStick.transform.rotation.eulerAngles.x;
-    //    if (angle >= 270)
-    //    {
-    //        angle -= 270f;
-    //    }
-    //    else
-    //    {
-    //        angle += 90;
-    //    }
-
-    //    float angleRadians = angle * Mathf.Rad2Deg;
-    //    verticalRotation = Mathf.Cos(angleRadians);
-
-    //    Debug.Log(angle);
-    //    Debug.Log(verticalRotation);
-    //}
-
-    public void GetVerticalStick()
-    {
-        float angle = verticalStick.transform.rotation.eulerAngles.x;
-
-        angle = (angle + 360) % 360;
-
-        float offsetAngle = (angle + 90f) % 360;
 
        
-        float angleRadians = offsetAngle * Mathf.Deg2Rad;
-        verticalRotation = Mathf.Cos(angleRadians);
+    }
 
-        Debug.Log(angle);
-        Debug.Log(offsetAngle);
-        Debug.Log(verticalRotation);
+    public void UpdateMovement()
+    {
+        // Calculate forward movement
+        float forwardOffset = forwardSpeed * Time.deltaTime;
+        transform.Translate(transform.forward * forwardOffset, Space.World);
+
+        // Keep the plane at the initial height
+        //Vector3 newPosition = transform.position;
+        //newPosition.y = initialHeight;
+        //transform.position = newPosition;
     }
 }
