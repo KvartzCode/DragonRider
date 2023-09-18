@@ -56,8 +56,8 @@ Material:
     - _waveamplitude: 0.01
     - _wavespeed: 0.5
     m_Colors:
-    - _Deepcolour: {r: 0.33521715, g: 0.44901586, b: 0.764151, a: 1}
-    - _SurfaceColour: {r: 0.39417946, g: 0.72848415, b: 0.8113208, a: 1}
+    - _Deepcolour: {r: 0.36863655, g: 0.46047285, b: 0.7169812, a: 1}
+    - _SurfaceColour: {r: 0.3995639, g: 0.6314016, b: 0.6886792, a: 1}
     - _foamcolor: {r: 0.99056596, g: 0.99056596, b: 0.99056596, a: 1}
     - _refractionscale: {r: 2.2, g: 1.83, b: 0, a: 0}
   m_BuildTextureStacks: []
