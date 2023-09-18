@@ -31,10 +31,10 @@ public class PlaneController : MonoBehaviour
     public void UpdateRotation()
     {
 
-        //float rollInput = Input.GetAxis("Horizontal");
-        float rollInput = stickController.GetHorizontalStickAngle();
-        //float pitchInput = - Input.GetAxis("Vertical");
-        float pitchInput = stickController.GetVerticalStickAngle();
+        float rollInput = Input.GetAxis("Horizontal");
+        //float rollInput = stickController.GetHorizontalStickAngle();
+        float pitchInput = - Input.GetAxis("Vertical");
+        //float pitchInput = stickController.GetVerticalStickAngle();
 
         float rollAngle = -rollInput * rollSpeed * Time.deltaTime;
 
