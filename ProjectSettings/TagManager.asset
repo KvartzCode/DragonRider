@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - WorldBounds
+  - Anchor
   layers:
   - Default
   - TransparentFX
