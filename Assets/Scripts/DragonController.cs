@@ -24,6 +24,11 @@ public class DragonController : MonoBehaviour
 
     private void Update()
     {
+        
+    }
+
+    private void FixedUpdate()
+    {
         UpdateRotation();
         UpdateMovement();
     }
@@ -32,13 +37,16 @@ public class DragonController : MonoBehaviour
     {
         
 
-        float rollInput = stickController.GetHorizontalStick();
+        float rollInput = stickController.GetHorizontalStickAngle();
         //float pitchInput = Input.GetAxis("Vertical");
+        //float pitchInput = stickController.GetVerticalStickAngle();
         float pitchInput = 0f;
+
+        //float pitchInput = 0;
 
         float rollAngle = -rollInput * rollSpeed * Time.deltaTime;
 
-        float pitchAngle = -pitchInput * pitchSpeed * Time.deltaTime;
+        //float pitchAngle = -pitchInput * pitchSpeed * Time.deltaTime;
 
         float angle = transform.localEulerAngles.z;
 
@@ -69,13 +77,13 @@ public class DragonController : MonoBehaviour
 
         //Rotate
         Vector3 eulerAngles = transform.rotation.eulerAngles;
-        eulerAngles.x += pitchAngle;
+        //eulerAngles.x += pitchAngle;
         eulerAngles.y += yawAngle;
         eulerAngles.z += rollAngle;
         transform.rotation = Quaternion.Euler(eulerAngles);
 
+        transform.Rotate(Vector3.right * -pitchInput * pitchSpeed * Time.fixedDeltaTime);
 
-       
     }
 
     public void UpdateMovement()
@@ -85,8 +93,8 @@ public class DragonController : MonoBehaviour
         transform.Translate(transform.forward * forwardOffset, Space.World);
 
         // Keep the plane at the initial height
-        Vector3 newPosition = transform.position;
-        newPosition.y = initialHeight;
-        transform.position = newPosition;
+        //Vector3 newPosition = transform.position;
+        //newPosition.y = initialHeight;
+        //transform.position = newPosition;
     }
 }

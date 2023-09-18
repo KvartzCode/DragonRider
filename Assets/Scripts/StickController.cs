@@ -8,16 +8,24 @@ public class StickController : MonoBehaviour
     GameObject horizontalStick;
     [SerializeField]
     GameObject verticalStick;
+    [SerializeField]
+    GameObject dragon;
 
     public float verticalRotation;
     public float horizontalRotation;
 
     private void Update()
     {
-        GetVerticalStick();
-        GetHorizontalStick();
+        //UpdateVerticalStick();
+        //UpdateHorizontalStick();
         //Debug.Log("Vertical: " + verticalRotation);
         //Debug.Log("Horizontal: " + horizontalRotation);
+    }
+
+    private void FixedUpdate()
+    {
+        UpdateVerticalStick();
+        UpdateHorizontalStick();
     }
 
     //public void GetVerticalStick()
@@ -31,14 +39,14 @@ public class StickController : MonoBehaviour
     //    {
     //        angle += 90;
     //    }
-        
+
     //    float angleRadians = angle * Mathf.Rad2Deg;
     //    verticalRotation = Mathf.Cos(angleRadians);
     //}
 
-    public float GetVerticalStick()
+    public void UpdateVerticalStick()
     {
-        float angle = verticalStick.transform.rotation.eulerAngles.x;
+        float angle = verticalStick.transform.eulerAngles.x - transform.root.localEulerAngles.x;
 
         angle = (angle + 360) % 360;
 
@@ -46,7 +54,7 @@ public class StickController : MonoBehaviour
 
 
         float angleRadians = offsetAngle * Mathf.Deg2Rad;
-        return verticalRotation = Mathf.Cos(angleRadians);
+        verticalRotation = Mathf.Cos(angleRadians);
 
         //Debug.Log(angle);
         //Debug.Log(offsetAngle);
@@ -68,21 +76,32 @@ public class StickController : MonoBehaviour
     //    horizontalRotation = Mathf.Cos(angleRadians);
     //}
 
-    public float GetHorizontalStick()
+    public void UpdateHorizontalStick()
     {
-        float angle = horizontalStick.transform.localRotation.eulerAngles.z;
+        float angle = horizontalStick.transform.eulerAngles.z - transform.root.transform.localEulerAngles.z;
+        //float angle = horizontalStick.transform.eulerAngles.z - dragon.transform.localEulerAngles.z;
 
-        // Normalize angle
+        //Normalize angle
         angle = (angle + 360) % 360;
 
         //offset angle
         float offsetAngle = (angle + 90f) % 360;
+        Debug.Log(offsetAngle);
 
         float angleRadians = offsetAngle * Mathf.Deg2Rad;
-        return horizontalRotation = Mathf.Cos(angleRadians);
+        horizontalRotation = Mathf.Cos(angleRadians);
 
-        //Debug.Log(angle);
         //Debug.Log(offsetAngle);
         //Debug.Log(horizontalRotation);
     }
+    public float GetVerticalStickAngle()
+    {
+        return verticalRotation;
+    }
+
+    public float GetHorizontalStickAngle()
+    {
+        return horizontalRotation;
+    }
+
 }

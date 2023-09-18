@@ -30,15 +30,15 @@ public class PlaneController : MonoBehaviour
 
     public void UpdateRotation()
     {
-        
 
-        float rollInput = stickController.GetHorizontalStick();
-        //float pitchInput = Input.GetAxis("Vertical");
-        float pitchInput = stickController.GetVerticalStick();
+        //float rollInput = Input.GetAxis("Horizontal");
+        float rollInput = stickController.GetHorizontalStickAngle();
+        //float pitchInput = - Input.GetAxis("Vertical");
+        float pitchInput = stickController.GetVerticalStickAngle();
 
         float rollAngle = -rollInput * rollSpeed * Time.deltaTime;
 
-        float pitchAngle = -pitchInput * pitchSpeed * Time.deltaTime;
+        //float pitchAngle = -pitchInput * pitchSpeed * Time.deltaTime;
 
         float angle = transform.localEulerAngles.z;
 
@@ -69,13 +69,15 @@ public class PlaneController : MonoBehaviour
 
         //Rotate
         Vector3 eulerAngles = transform.localRotation.eulerAngles;
-        eulerAngles.x += pitchAngle;
+        //eulerAngles.x += pitchAngle;
         eulerAngles.y += yawAngle;
         eulerAngles.z += rollAngle;
-        transform.rotation = Quaternion.Euler(eulerAngles);
+        transform.localRotation = Quaternion.Euler(eulerAngles);
+
+        transform.Rotate(Vector3.right * -pitchInput * pitchSpeed * Time.deltaTime);
+        //Vector3 eulerAngles = transform.localRotation.eulerAngles;
 
 
-       
     }
 
     public void UpdateMovement()
@@ -84,7 +86,7 @@ public class PlaneController : MonoBehaviour
         float forwardOffset = forwardSpeed * Time.deltaTime;
         transform.Translate(transform.forward * forwardOffset, Space.World);
 
-        // Keep the plane at the initial height
+        //Keep plane at initial height
         //Vector3 newPosition = transform.position;
         //newPosition.y = initialHeight;
         //transform.position = newPosition;
