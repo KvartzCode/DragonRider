@@ -86,7 +86,7 @@ public class StickController : MonoBehaviour
 
         //offset angle
         float offsetAngle = (angle + 90f) % 360;
-        Debug.Log(offsetAngle);
+        //Debug.Log(offsetAngle);
 
         float angleRadians = offsetAngle * Mathf.Deg2Rad;
         horizontalRotation = Mathf.Cos(angleRadians);

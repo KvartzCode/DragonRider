@@ -6,6 +6,9 @@ TagManager:
   tags:
   - WorldBounds
   - Anchor
+  - Spawnpoint
+  - Ground
+  - Fireball
   layers:
   - Default
   - TransparentFX
