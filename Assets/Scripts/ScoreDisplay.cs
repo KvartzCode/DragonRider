@@ -7,7 +7,7 @@ public class ScoreDisplay : MonoBehaviour
 {
     public int Score { get; private set; }
 
-    [SerializeField, Tooltip("Order by left to right. Eg: index 0 is the leftmost number, index 1 is the second leftmost number, etc.")]
+    [SerializeField, Tooltip("Order by right to left. Eg: index 0 is the rightmost number, index 1 is the second rightmost number, etc.")]
     List<ScoreWheel> wheels = new List<ScoreWheel>();
 
 
