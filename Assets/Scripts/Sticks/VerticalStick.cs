@@ -8,8 +8,8 @@ public class VerticalStick : MonoBehaviour
     public bool canBeGrabbed;
     public GameObject stickPivot;
 
-    public float verticalRotation;
     public bool isGrabbed;
+    private float verticalRotation;
 
     private float lerpTime = 0.1f;
     private float elapsedLerpTime;
@@ -20,18 +20,18 @@ public class VerticalStick : MonoBehaviour
         canBeGrabbed = false;
     }
 
-    private void Update()
-    {
-        if (!isGrabbed && stickPivot.transform.localEulerAngles.x != 0)
-        {
-            elapsedLerpTime = Time.deltaTime;
-            float percentComplete = elapsedLerpTime / lerpTime;
+    //private void Update()
+    //{
+    //    if (!isGrabbed && stickPivot.transform.localEulerAngles.x != 0)
+    //    {
+    //        elapsedLerpTime = Time.deltaTime;
+    //        float percentComplete = elapsedLerpTime / lerpTime;
 
-            float lerpAngle = Mathf.LerpAngle(stickPivot.transform.localEulerAngles.x, 0f, percentComplete);
+    //        float lerpAngle = Mathf.LerpAngle(stickPivot.transform.localEulerAngles.x, 0f, percentComplete);
 
-            stickPivot.transform.localEulerAngles = new Vector3(lerpAngle, stickPivot.transform.eulerAngles.y, stickPivot.transform.localEulerAngles.z);
-        }
-    }
+    //        stickPivot.transform.localEulerAngles = new Vector3(lerpAngle, stickPivot.transform.eulerAngles.y, stickPivot.transform.localEulerAngles.z);
+    //    }
+    //}
 
     public void UpdateVerticalStick(GameObject touchController)
     {
@@ -50,7 +50,7 @@ public class VerticalStick : MonoBehaviour
         }
 
         //Mathf.Clamp(touchController.transform.localEulerAngles.x, -45, 45);
-        stickPivot.transform.localEulerAngles = new Vector3(tmpX, stickPivot.transform.eulerAngles.y, stickPivot.transform.eulerAngles.z);
+        stickPivot.transform.localEulerAngles = new Vector3(tmpX, stickPivot.transform.localEulerAngles.y, stickPivot.transform.localEulerAngles.z);
         float angle = transform.eulerAngles.x - transform.root.localEulerAngles.x;
 
         angle = (angle + 360) % 360;
@@ -59,7 +59,9 @@ public class VerticalStick : MonoBehaviour
 
 
         float angleRadians = offsetAngle * Mathf.Deg2Rad;
+        Debug.LogWarning("vertical angle: " + angleRadians);
         verticalRotation = Mathf.Cos(angleRadians);
+        Debug.LogWarning("verticalRotation: " + verticalRotation);
     }
 
     public float GetVerticalStickAngle()

@@ -70,7 +70,7 @@ public class Grabber : MonoBehaviour
             }
         }
 
-        Debug.Log(controllerCanGrab);
+        //Debug.Log(controllerCanGrab);
     }
 
     private void OnTriggerEnter(Collider other)
