@@ -2237,6 +2237,84 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "CustomRight",
+            "id": "e72c0051-b1f5-4d53-8fc0-42892a2900a1",
+            "actions": [
+                {
+                    "name": "Grab",
+                    "type": "Button",
+                    "id": "c074bb14-e5a6-4485-8aca-cd1360661f41",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "feca36a1-83b4-4254-99ae-627c3b2b7299",
+                    "path": "<XRController>{RightHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f53aec66-4a4c-4fd2-88ea-fcac7a0c20e9",
+                    "path": "<MetaAimHand>{RightHand}/indexPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "CustomLeft",
+            "id": "7947cd1a-1751-44cc-8d16-4fa235696f3d",
+            "actions": [
+                {
+                    "name": "Grab",
+                    "type": "Button",
+                    "id": "9c211be9-e6ea-40c9-b648-fd7c4a00bd6f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "278b53df-dc6f-44f6-9a76-70320da4a240",
+                    "path": "<XRController>{LeftHand}/gripPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9461bffa-637d-4022-840d-8391997cecc3",
+                    "path": "<MetaAimHand>{LeftHand}/indexPressed",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Generic XR Controller",
+                    "action": "Grab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
