@@ -8,6 +8,9 @@ public class DragonController : MonoBehaviour
     [SerializeField]
     public StickController stickController;
 
+    [SerializeField] HorizontalStick horizontalStick;
+    [SerializeField] VerticalStick verticalStick;
+
     public float rollSpeed = 45f;
     public float yawSpeed = 30f;
     public float forwardSpeed = 10f;
@@ -24,23 +27,27 @@ public class DragonController : MonoBehaviour
 
     private void Update()
     {
-        
+        UpdateRotation();
+        UpdateMovement();
     }
 
     private void FixedUpdate()
     {
-        UpdateRotation();
-        UpdateMovement();
+        //UpdateRotation();
+        //UpdateMovement();
     }
 
     public void UpdateRotation()
     {
         
 
-        float rollInput = stickController.GetHorizontalStickAngle();
+        float rollInput = horizontalStick.GetHorizontalStickAngle();
         //float pitchInput = Input.GetAxis("Vertical");
-        //float pitchInput = stickController.GetVerticalStickAngle();
-        float pitchInput = 0f;
+        float pitchInput = verticalStick.GetVerticalStickAngle();
+        //Debug.LogWarning("rollInput: " + rollInput);
+        //Debug.LogWarning("pitchInput: " + pitchInput);
+
+        //float pitchInput = 0f;
 
         //float pitchInput = 0;
 

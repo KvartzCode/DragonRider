@@ -40,6 +40,11 @@ public class Grabber : MonoBehaviour
             {
                 stickObject.GetComponent<HorizontalStick>().isGrabbed = false;
             }
+
+            if(stickObject.GetComponent<VerticalPosition>() != null)
+            {
+                stickObject.GetComponent<VerticalPosition>().isGrabbed = false;
+            }
         }
 
         if(controllerCanGrab)
@@ -57,9 +62,15 @@ public class Grabber : MonoBehaviour
                 stickObject.GetComponent<HorizontalStick>().UpdateHorizontalStick(this.gameObject);
                 stickObject.GetComponent<HorizontalStick>().isGrabbed = true;
             }
+
+            if(stickObject.GetComponent <VerticalPosition>() != null)
+            {
+                stickObject.GetComponent<VerticalPosition>().UpdateVerticalStickLookAt(this.gameObject);
+                stickObject.GetComponent<VerticalPosition>().isGrabbed = true;
+            }
         }
 
-        Debug.Log(controllerCanGrab);
+        //Debug.Log(controllerCanGrab);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -81,6 +92,12 @@ public class Grabber : MonoBehaviour
             stickObject = other.gameObject;
             canGrabStick = true;
             Debug.Log("Right Grabby");
+        }
+
+        if (other.GetComponent<VerticalPosition>() != null)
+        {
+            stickObject = other.gameObject;
+            canGrabStick = true;
         }
     }
 
