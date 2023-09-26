@@ -54,7 +54,7 @@ public class HorizontalStick : MonoBehaviour
         }
 
         Mathf.Clamp(touchController.transform.localEulerAngles.z, -45, 45);
-        stickPivot.transform.localEulerAngles = new Vector3(stickPivot.transform.eulerAngles.x, stickPivot.transform.eulerAngles.y, tmpZ);
+        stickPivot.transform.localEulerAngles = new Vector3(stickPivot.transform.eulerAngles.x, stickPivot.transform.eulerAngles.y, -tmpZ);
         float angle = transform.eulerAngles.z - transform.root.localEulerAngles.z;
         //float angle = transform.eulerAngles.z - transform.root.transform.localEulerAngles.z;
         //float angle = horizontalStick.transform.eulerAngles.z - dragon.transform.localEulerAngles.z;
