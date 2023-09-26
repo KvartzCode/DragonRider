@@ -9,6 +9,9 @@ TagManager:
   - Spawnpoint
   - Ground
   - Fireball
+  - Grabbable
+  - Grabber
+  - MiniGun
   layers:
   - Default
   - TransparentFX
