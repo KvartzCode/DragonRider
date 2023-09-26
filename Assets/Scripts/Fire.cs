@@ -13,18 +13,11 @@ public class Fire : MonoBehaviour
 
     GameObject fireball;
 
-    
-
     public float fireCooldown = 5;
-    
     
     private float cooldownTimer = 0;
     private bool hasFired;
 
-    private void Start()
-    {
-       
-    }
 
     private void Update()
     {
