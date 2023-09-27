@@ -82,7 +82,7 @@ public class Grabber : MonoBehaviour
             //Debug.Log("Detected Vertical");
             stickObject = other.gameObject;
             canGrabStick = true;
-            Debug.Log("Left Grabby");
+            //Debug.Log("Left Grabby");
             return;
         }
 
@@ -91,7 +91,7 @@ public class Grabber : MonoBehaviour
             //Debug.Log("Detected Horizontal");
             stickObject = other.gameObject;
             canGrabStick = true;
-            Debug.Log("Right Grabby");
+            //Debug.Log("Right Grabby");
         }
 
         if (other.GetComponent<VerticalPosition>() != null)
@@ -106,7 +106,7 @@ public class Grabber : MonoBehaviour
         if(other.gameObject == stickObject)
         {
             canGrabStick = false;
-            Debug.Log("No Grabby");
+            //Debug.Log("No Grabby");
         }
     }
 }
