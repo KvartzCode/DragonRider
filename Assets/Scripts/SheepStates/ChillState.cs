@@ -10,7 +10,7 @@ public class ChillState : SheepBaseState
 
     public override void StartState(SheepStateManager sheep)
     {
-        Debug.Log("StartState");
+        //Debug.Log("StartState");
         chillTime = Random.Range(0f, 15);
     }
 

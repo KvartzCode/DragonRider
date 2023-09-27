@@ -23,18 +23,18 @@ public class HorizontalStick : MonoBehaviour
         canBeGrabbed = false;
     }
 
-    //private void Update()
-    //{
-    //    if (!isGrabbed && stickPivot.transform.localEulerAngles.z != 0)
-    //    {
-    //        elapsedLerpTime = Time.deltaTime;
-    //        float percentComplete = elapsedLerpTime / lerpTime;
-            
-    //        float lerpAngle = Mathf.LerpAngle(stickPivot.transform.localEulerAngles.z, 0f, percentComplete);
+    private void Update()
+    {
+        if (!isGrabbed && stickPivot.transform.localEulerAngles.z != 0)
+        {
+            elapsedLerpTime = Time.deltaTime;
+            float percentComplete = elapsedLerpTime / lerpTime;
 
-    //        stickPivot.transform.localEulerAngles = new Vector3(stickPivot.transform.eulerAngles.x, stickPivot.transform.localEulerAngles.y, lerpAngle);
-    //    }
-    //}
+            float lerpAngle = Mathf.LerpAngle(stickPivot.transform.localEulerAngles.z, 0f, percentComplete);
+
+            stickPivot.transform.localEulerAngles = new Vector3(stickPivot.transform.localEulerAngles.x, stickPivot.transform.localEulerAngles.y, lerpAngle);
+        }
+    }
 
     public void UpdateHorizontalStick(GameObject touchController)
     {

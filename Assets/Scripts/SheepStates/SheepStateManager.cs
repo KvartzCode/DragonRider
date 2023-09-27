@@ -30,7 +30,7 @@ public class SheepStateManager : MonoBehaviour
         sheepAgent = GetComponent<NavMeshAgent>();
         currentState = chillState;
         currentState.StartState(this);
-        Debug.Log(currentState.ToString());
+        //Debug.Log(currentState.ToString());
     }
 
     // Update is called once per frame
@@ -48,6 +48,6 @@ public class SheepStateManager : MonoBehaviour
     {
         currentState = newState;
         currentState.EnterState(this);
-        Debug.Log(currentState.ToString());
+        //Debug.Log(currentState.ToString());
     }
 }

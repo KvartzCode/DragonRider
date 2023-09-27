@@ -20,18 +20,18 @@ public class VerticalStick : MonoBehaviour
         canBeGrabbed = false;
     }
 
-    //private void Update()
-    //{
-    //    if (!isGrabbed && stickPivot.transform.localEulerAngles.x != 0)
-    //    {
-    //        elapsedLerpTime = Time.deltaTime;
-    //        float percentComplete = elapsedLerpTime / lerpTime;
+    private void Update()
+    {
+        if (!isGrabbed && stickPivot.transform.localEulerAngles.x != 0)
+        {
+            elapsedLerpTime = Time.deltaTime;
+            float percentComplete = elapsedLerpTime / lerpTime;
 
-    //        float lerpAngle = Mathf.LerpAngle(stickPivot.transform.localEulerAngles.x, 0f, percentComplete);
+            float lerpAngle = Mathf.LerpAngle(stickPivot.transform.localEulerAngles.x, 0f, percentComplete);
 
-    //        stickPivot.transform.localEulerAngles = new Vector3(lerpAngle, stickPivot.transform.eulerAngles.y, stickPivot.transform.localEulerAngles.z);
-    //    }
-    //}
+            stickPivot.transform.localEulerAngles = new Vector3(lerpAngle, stickPivot.transform.localEulerAngles.y, stickPivot.transform.localEulerAngles.z);
+        }
+    }
 
     public void UpdateVerticalStick(GameObject touchController)
     {
@@ -59,9 +59,7 @@ public class VerticalStick : MonoBehaviour
 
 
         float angleRadians = offsetAngle * Mathf.Deg2Rad;
-        Debug.LogWarning("vertical angle: " + angleRadians);
         verticalRotation = Mathf.Cos(angleRadians);
-        Debug.LogWarning("verticalRotation: " + verticalRotation);
     }
 
     public float GetVerticalStickAngle()
