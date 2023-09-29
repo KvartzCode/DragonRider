@@ -13,6 +13,8 @@ public class Grabber : MonoBehaviour
 
     bool canGrabStick;
 
+    bool tempIsGrabbed;
+
     public GameObject stickObject;
 
     void Start()
@@ -41,9 +43,10 @@ public class Grabber : MonoBehaviour
                 stickObject.GetComponent<HorizontalStick>().isGrabbed = false;
             }
 
-            if(stickObject.GetComponent<VerticalPosition>() != null)
+            if(stickObject.GetComponent<VerticalPositionStick>() != null)
             {
-                stickObject.GetComponent<VerticalPosition>().isGrabbed = false;
+                stickObject.GetComponent<VerticalPositionStick>().isGrabbed = false;
+                tempIsGrabbed = stickObject.GetComponent<VerticalPositionStick>().isGrabbed;
             }
         }
 
@@ -63,10 +66,20 @@ public class Grabber : MonoBehaviour
                 stickObject.GetComponent<HorizontalStick>().isGrabbed = true;
             }
 
-            if(stickObject.GetComponent <VerticalPosition>() != null)
+            if(stickObject.GetComponent <VerticalPositionStick>() != null)
             {
-                stickObject.GetComponent<VerticalPosition>().UpdateVerticalStickLookAt(this.gameObject);
-                stickObject.GetComponent<VerticalPosition>().isGrabbed = true;
+                stickObject.GetComponent<VerticalPositionStick>().isGrabbed = true;
+
+                Debug.Log(tempIsGrabbed + " TempGrabbed");
+                Debug.Log(stickObject.GetComponent<VerticalPositionStick>().isGrabbed + " isGrabbed");
+
+                if (tempIsGrabbed != stickObject.GetComponent<VerticalPositionStick>().isGrabbed)
+                {
+                    Debug.Log("Save initial original");
+                    stickObject.GetComponent<VerticalPositionStick>().SaveInitialPosX(this.gameObject.transform.position.z);
+                }
+                tempIsGrabbed = stickObject.GetComponent<VerticalPositionStick>().isGrabbed;
+                stickObject.GetComponent<VerticalPositionStick>().UpdateVerticalStickLookAt(this.gameObject);
             }
         }
 
@@ -94,7 +107,7 @@ public class Grabber : MonoBehaviour
             //Debug.Log("Right Grabby");
         }
 
-        if (other.GetComponent<VerticalPosition>() != null)
+        if (other.GetComponent<VerticalPositionStick>() != null)
         {
             stickObject = other.gameObject;
             canGrabStick = true;
