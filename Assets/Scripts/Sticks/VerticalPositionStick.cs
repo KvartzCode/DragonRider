@@ -21,8 +21,8 @@ public class VerticalPositionStick : MonoBehaviour
 
     private float tmpX; //for test, can be local
 
-    private float CurrentControlPosition;
-    public float InitialControlPosition;
+    private float currentControlPosition;
+    public float initialControlPosition;
 
     [SerializeField] private float maxOffsetZ = 1;
 
@@ -63,51 +63,51 @@ public class VerticalPositionStick : MonoBehaviour
 
     public void SaveInitialPosX(float initPosition)
     {
-        Debug.Log("save initial");
-        InitialControlPosition = initPosition;
+        //Debug.Log("save initial");
+        initialControlPosition = initPosition;
 
     }
 
     public void UpdateVerticalStickLookAt(GameObject touchController)
     {
-        /*CurrentControlPosition = touchController.transform.position.z - InitialControlPosition;
+        currentControlPosition = touchController.transform.localPosition.z - (initialControlPosition);
 
-        CurrentControlPosition = Mathf.Clamp(CurrentControlPosition, -maxOffsetZ, maxOffsetZ);
-        float lerpFactor = CurrentControlPosition / maxOffsetZ;
+        currentControlPosition = Mathf.Clamp(currentControlPosition, -maxOffsetZ, maxOffsetZ);
+        float lerpFactor = currentControlPosition / maxOffsetZ;
         lerpFactor += 1;
         lerpFactor *= 0.5f;
-        Debug.Log(lerpFactor + " LerpFactor");
+        //Debug.Log(lerpFactor + " LerpFactor");
         float cntrlRotX = Mathf.Lerp(-45, 45, lerpFactor);
-        Debug.Log(cntrlRotX);*/ //Awesome solution
+        //Debug.Log(cntrlRotX); //Awesome solution
 
 
-        Vector3 tmpTargetPos = new Vector3(stickBase.transform.position.x, touchController.transform.position.y, touchController.transform.position.z);
-        Vector3 tmpStickRotation = Vector3.up;//stickBase.transform.up;
-        Vector3 tmpDirection = (tmpTargetPos - stickBase.transform.position).normalized;
+        //Vector3 tmpTargetPos = new Vector3(stickBase.transform.position.x, touchController.transform.position.y, touchController.transform.position.z);
+        //Vector3 tmpStickRotation = stickBase.transform.up;
+        //Vector3 tmpDirection = (tmpTargetPos - stickBase.transform.position).normalized;
      
-        tmpX = Vector3.SignedAngle(tmpStickRotation, tmpDirection, stickPivot.transform.right);
+        //tmpX = Vector3.SignedAngle(tmpStickRotation, tmpDirection, stickBase.transform.right);
 
         //if (touchController.transform.position.z < stickBase.transform.position.z)
         //    tmpX *= -1;
 
-        if (tmpX < 0f)
-        {
-            tmpX = 360 - tmpX * -1;
-        }
+        //if (tmpX < 0f)
+        //{
+        //    tmpX = 360 - tmpX * -1;
+        //}
 
    
-        if (tmpX >= 0 && tmpX < 180)
-        {
-            tmpX = Mathf.Clamp(tmpX, 0, 45);
+        //if (tmpX >= 0 && tmpX < 180)
+        //{
+        //    tmpX = Mathf.Clamp(tmpX, 0, 45);
 
-        }
+        //}
 
-        if (tmpX <= 360 && tmpX >= 180)
-        {
-            tmpX = Mathf.Clamp(tmpX, 315, 360);
-        }
+        //if (tmpX <= 360 && tmpX >= 180)
+        //{
+        //    tmpX = Mathf.Clamp(tmpX, 315, 360);
+        //}
 
-        stickPivot.transform.localEulerAngles = new Vector3(tmpX, stickPivot.transform.localEulerAngles.y, stickPivot.transform.localEulerAngles.z);
+        stickPivot.transform.localEulerAngles = new Vector3(cntrlRotX, stickPivot.transform.localEulerAngles.y, stickPivot.transform.localEulerAngles.z);
         float angle = transform.eulerAngles.x - transform.root.localEulerAngles.x;
 
         angle = (angle + 360) % 360;
@@ -116,11 +116,13 @@ public class VerticalPositionStick : MonoBehaviour
 
 
         float angleRadians = offsetAngle * Mathf.Deg2Rad;
-        verticalRotation = Mathf.Cos(angleRadians);
+        verticalRotation = (Mathf.Cos(angleRadians)) * -1;
+        Debug.Log(verticalRotation);
     }
 
     public float GetVerticalStickPosition()
     {
+        
         return verticalRotation;
     }
 }

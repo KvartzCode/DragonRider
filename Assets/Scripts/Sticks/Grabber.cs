@@ -52,7 +52,7 @@ public class Grabber : MonoBehaviour
 
         if(controllerCanGrab)
         {
-            Debug.Log("Trying to grab");
+            //Debug.Log("Trying to grab");
             if(stickObject.GetComponent<VerticalStick>() != null ) 
             {
                 Debug.Log("Grabbing");
@@ -70,13 +70,13 @@ public class Grabber : MonoBehaviour
             {
                 stickObject.GetComponent<VerticalPositionStick>().isGrabbed = true;
 
-                Debug.Log(tempIsGrabbed + " TempGrabbed");
-                Debug.Log(stickObject.GetComponent<VerticalPositionStick>().isGrabbed + " isGrabbed");
+                //Debug.Log(tempIsGrabbed + " TempGrabbed");
+                //Debug.Log(stickObject.GetComponent<VerticalPositionStick>().isGrabbed + " isGrabbed");
 
                 if (tempIsGrabbed != stickObject.GetComponent<VerticalPositionStick>().isGrabbed)
                 {
-                    Debug.Log("Save initial original");
-                    stickObject.GetComponent<VerticalPositionStick>().SaveInitialPosX(this.gameObject.transform.position.z);
+                    //Debug.Log("Save initial original");
+                    stickObject.GetComponent<VerticalPositionStick>().SaveInitialPosX(this.gameObject.transform.localPosition.z);
                 }
                 tempIsGrabbed = stickObject.GetComponent<VerticalPositionStick>().isGrabbed;
                 stickObject.GetComponent<VerticalPositionStick>().UpdateVerticalStickLookAt(this.gameObject);
