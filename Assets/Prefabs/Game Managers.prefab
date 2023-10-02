@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 968015134045663089}
   - component: {fileID: 593047791992973073}
   - component: {fileID: 6137823160636179862}
+  - component: {fileID: 6899165319439408852}
+  - component: {fileID: 7486614902948911776}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: Game Managers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,5 +60,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f89409e9a26d647b9c179b744326a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerGameobject: {fileID: 0}
-  currentState: 1
+  music: {fileID: 8300000, guid: 440d86b963c38a743a915abd7dd98c87, type: 3}
+--- !u!114 &6899165319439408852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2716384147233319710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545cc4cf009056b4fae6383e32764669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+--- !u!114 &7486614902948911776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2716384147233319710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2434d84645aeb51478717bf9f569d537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rings: []
+  ringsDone: 0
