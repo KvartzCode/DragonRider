@@ -7,6 +7,8 @@ public class PlaneController : MonoBehaviour
 {
     [SerializeField]
     public StickController stickController;
+    [SerializeField] HorizontalStick horizontalStick;
+    [SerializeField] VerticalStick verticalStick;
 
     public float rollSpeed = 45f;
     public float yawSpeed = 30f;
@@ -31,10 +33,10 @@ public class PlaneController : MonoBehaviour
     public void UpdateRotation()
     {
 
-        float rollInput = Input.GetAxis("Horizontal");
-        //float rollInput = stickController.GetHorizontalStickAngle();
-        float pitchInput = - Input.GetAxis("Vertical");
-        //float pitchInput = stickController.GetVerticalStickAngle();
+        //float rollInput = Input.GetAxis("Horizontal");
+        float rollInput = horizontalStick.GetHorizontalStickAngle();
+        //float pitchInput = - Input.GetAxis("Vertical");
+        float pitchInput = verticalStick.GetVerticalStickAngle();
 
         float rollAngle = -rollInput * rollSpeed * Time.deltaTime;
 

@@ -16,10 +16,13 @@ public class PanicState : SheepBaseState
     private List<GameObject> waypoints;
     private float normalSpeed;
     private float panicSpeed = 3;
+   
 
 
     public override void EnterState(SheepStateManager sheep)
     {
+        panicTime = Random.Range(5f, 10f);
+        currentTime = panicTime;
         waypoints = sheep.sheepWaypoints;
         normalSpeed = sheep.sheepAgent.speed;
         sheep.sheepAgent.speed = panicSpeed;
@@ -31,13 +34,14 @@ public class PanicState : SheepBaseState
 
     public override void UpdateState(SheepStateManager sheep)
     {
-        panicTime -= Time.deltaTime;
+        currentTime -= Time.deltaTime;
         currentDirectionTime -= Time.deltaTime;
 
-        if(panicTime < 0 )
+        if(currentTime < 0 )
         {
             sheep.sheepAgent.speed = normalSpeed;
             sheep.ChangeSheepState(sheep.chillState);
+            
         }
 
         if (currentDirectionTime < 0f)

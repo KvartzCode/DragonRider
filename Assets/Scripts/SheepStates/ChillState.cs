@@ -6,24 +6,28 @@ using UnityEngine;
 public class ChillState : SheepBaseState
 {
     float chillTime;
+    float currentTimer;
 
 
     public override void StartState(SheepStateManager sheep)
     {
         //Debug.Log("StartState");
         chillTime = Random.Range(0f, 15);
+        currentTimer = chillTime;
     }
 
     public override void EnterState(SheepStateManager sheep)
     {
         chillTime = Random.Range(30.0f, 60.0f);
+        currentTimer = chillTime;
+        Debug.Log("Chillin");
     }
 
     public override void UpdateState(SheepStateManager sheep)
     {
-        chillTime -= Time.deltaTime;
+        currentTimer -= Time.deltaTime;
 
-        if(chillTime < 0.0f) 
+        if(currentTimer < 0.0f) 
         {
             sheep.ChangeSheepState(sheep.cruiseState);
         }

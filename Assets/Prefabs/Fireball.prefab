@@ -120,7 +120,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7140f307b7fe840a3489f5854e72b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireballImpulse: 5
+  damage: 50
+  fireballImpulse: 20
 --- !u!54 &234761881027269423
 Rigidbody:
   m_ObjectHideFlags: 0
