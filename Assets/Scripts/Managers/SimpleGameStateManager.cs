@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public enum Gamestate { StartState, GameActiveState, GameOverState}
+public enum Gamestate { Menu, GameActive, GameOver}
 
 
 
@@ -11,6 +12,10 @@ public class SimpleGameStateManager : MonoBehaviour
 {
     public static SimpleGameStateManager instance;
     public Gamestate currentState;
+
+    public string[] sceneNames;
+
+    public int accumulatedScore;
 
 
     private void Awake()
@@ -27,32 +32,34 @@ public class SimpleGameStateManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeGameState(Gamestate.StartState);
-    }
-
-
-
-    public void StartState()
-    {
-        //Add start gamestuff here
-        Debug.Log("Starting");
-        ChangeGameState(Gamestate.GameActiveState);   
-    }
-
-    private void Update()
-    {
        
     }
 
-    public void GameActiveState()
+
+    public void StartMenu()
+    {
+        //Add start gamestuff here
+        Debug.Log("Starting");
+        ChangeGameState(Gamestate.GameActive);   
+    }
+
+    public void StartGame()
+    {
+        //SceneManager.LoadScene(1);
+    }
+
+    public void SetGameActive()
     {
         Debug.Log("Runnning");
     }
 
     public void GameOver()
     {
-
+        accumulatedScore = ScoreManager.Instance.score;
+        SceneManager.LoadScene(3);
     }
+
+
 
     public void ChangeGameState(Gamestate state)
     {
@@ -60,16 +67,16 @@ public class SimpleGameStateManager : MonoBehaviour
 
         switch (currentState) 
         {
-            case Gamestate.StartState:
-                StartState();
+            case Gamestate.Menu:
+                StartMenu();
                 break;
-            case Gamestate.GameActiveState:
-                GameActiveState();
+            case Gamestate.GameActive:
+                SetGameActive();
                 break;
-            case Gamestate.GameOverState:
+            case Gamestate.GameOver:
                 //TODO add methods for gameover
+                GameOver();
                 break;
-
         }
     }
 }

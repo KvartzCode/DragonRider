@@ -2605,6 +2605,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6770853397965904615, guid: a219a6b956299f049a948ab064979260, type: 3}
+      propertyPath: startSpeed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9216914369452075978, guid: a219a6b956299f049a948ab064979260, type: 3}
       propertyPath: m_Name
       value: Dragon
