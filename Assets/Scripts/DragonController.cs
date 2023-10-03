@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,6 +11,12 @@ public class DragonController : MonoBehaviour
 
     [SerializeField] HorizontalStick horizontalStick;
     [SerializeField] VerticalStick verticalStick;
+    [SerializeField] VerticalPositionStick verticalPositionStick;
+
+    public float maxSpeed = 50f;
+    public float minSpeed = 10f;
+    public float startSpeed = 30;
+    public float acceleration = 1f;
 
     public float rollSpeed = 45f;
     public float yawSpeed = 30f;
@@ -19,14 +26,17 @@ public class DragonController : MonoBehaviour
     public float yawAngle = 0f;
 
     private float initialHeight;
+    private float currentSpeed;
 
     private void Start()
     {
         initialHeight = transform.position.y;
+        currentSpeed = startSpeed;
     }
 
     private void Update()
     {
+        
         UpdateRotation();
         UpdateMovement();
     }
@@ -39,8 +49,7 @@ public class DragonController : MonoBehaviour
 
     public void UpdateRotation()
     {
-        
-
+       
         float rollInput = horizontalStick.GetHorizontalStickAngle();
         //float pitchInput = Input.GetAxis("Vertical");
         float pitchInput = verticalStick.GetVerticalStickAngle();
@@ -95,8 +104,22 @@ public class DragonController : MonoBehaviour
 
     public void UpdateMovement()
     {
+        if (verticalPositionStick.GetVerticalStickPosition() != 0f)
+        {
+            float stickValue = verticalPositionStick.GetVerticalStickPosition();
+            if (currentSpeed < maxSpeed && stickValue > 0)
+            {
+                currentSpeed += acceleration * stickValue;
+            }
+
+            if (currentSpeed > minSpeed && stickValue < 0)
+            {
+                currentSpeed += acceleration * stickValue;
+            }
+        }
+
         // Calculate forward movement
-        float forwardOffset = forwardSpeed * Time.deltaTime;
+        float forwardOffset = currentSpeed * Time.deltaTime;
         transform.Translate(transform.forward * forwardOffset, Space.World);
 
         // Keep the plane at the initial height

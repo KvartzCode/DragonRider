@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerStateManager : MonoBehaviour
 {
     public PlayerBaseState currentState;
+    public AudioClip music;
 
     public DeadState deadState = new DeadState();
     public FlyingState flyingState = new FlyingState();
@@ -14,6 +15,11 @@ public class PlayerStateManager : MonoBehaviour
     void Start()
     {
         currentState = flyingState;
+
+        if (music != null)
+        {
+            AudioManager.instance.PlayMusicTrack(music);
+        }
 
         currentState.EnterState(this);
     }
