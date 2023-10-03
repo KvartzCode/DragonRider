@@ -33,6 +33,7 @@ public class HorizontalStick : MonoBehaviour
             float lerpAngle = Mathf.LerpAngle(stickPivot.transform.localEulerAngles.z, 0f, percentComplete);
 
             stickPivot.transform.localEulerAngles = new Vector3(stickPivot.transform.localEulerAngles.x, stickPivot.transform.localEulerAngles.y, lerpAngle);
+            horizontalRotation = 0;
         }
     }
 

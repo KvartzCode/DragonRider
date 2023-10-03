@@ -19,6 +19,7 @@ public class SheepStateManager : MonoBehaviour
 
     public int timesPissedOff;
     public int pissedOffTolerance = 2;
+    public float timeToSuffer = 5;
 
     [SerializeField]
     private GameObject minigun;
@@ -42,6 +43,15 @@ public class SheepStateManager : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         currentState.OnTrigger(this, other);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.GetComponent<Fireball>())
+        {
+            currentState.OnCollision(this, collision);
+            GetComponent<Sheep>().StartKillSheep();
+        }
     }
 
     public void ChangeSheepState(SheepBaseState newState)
