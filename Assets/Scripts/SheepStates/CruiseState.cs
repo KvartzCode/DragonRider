@@ -7,6 +7,7 @@ public class CruiseState : SheepBaseState
     GameObject waypointGameobject;
 
     float cruiseTime;
+    float currentTimer;
     bool isNotEmpty;
     bool hasChangedDirection;
     int currentWaypointIndex;
@@ -22,13 +23,15 @@ public class CruiseState : SheepBaseState
             sheep.sheepAgent.SetDestination(waypointGameobject.transform.position);
             isNotEmpty = true;
             cruiseTime = Random.Range(5f, 20f);
+            currentTimer = cruiseTime;
+            Debug.Log("Cruising");
         }
     }
 
     public override void UpdateState(SheepStateManager sheep)
     {
-        cruiseTime -= Time.deltaTime;
-        if( cruiseTime < 0f )
+        currentTimer -= Time.deltaTime;
+        if( currentTimer < 0f )
         {
             sheep.sheepAgent.ResetPath();
             sheep.ChangeSheepState(sheep.chillState);

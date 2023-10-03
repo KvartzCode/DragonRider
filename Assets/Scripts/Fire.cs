@@ -10,6 +10,8 @@ public class Fire : MonoBehaviour
     GameObject fireballPrefab;
     [SerializeField]
     GameObject fireballSpawnPoint;
+    [SerializeField]
+    InputActionReference fireInput;
 
     GameObject fireball;
 
@@ -30,7 +32,7 @@ public class Fire : MonoBehaviour
             }
         }
 
-        if (!hasFired && Input.GetMouseButtonDown(0))
+        if (!hasFired && Input.GetMouseButtonDown(0) || fireInput.action.IsPressed())
         {
             Shoot();
             Debug.Log("Shooting");

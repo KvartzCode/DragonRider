@@ -8,13 +8,9 @@ public class Sheep : MonoBehaviour
 
     public int killScore = 100;
 
-
-    private void OnCollisionEnter(Collision collision)
+    public void StartKillSheep()
     {
-        if(collision.gameObject.CompareTag("Fireball"))
-        {
-            StartCoroutine(KillSheep());
-        }
+        StartCoroutine(KillSheep());
     }
 
     public IEnumerator KillSheep()

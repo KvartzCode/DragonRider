@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class DamageTaker : MonoBehaviour
 {
+    public float damage;
+    public float health;
+
+    // Start is called before the first frame update
     void Start()
     {
         
