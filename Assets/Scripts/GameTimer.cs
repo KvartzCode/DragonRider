@@ -6,6 +6,7 @@ public class GameTimer : MonoBehaviour
 {
     public float Timer { get; private set; } = 300;
 
+    //public float Timer = 20; //For testing
 
     void Update()
     {
@@ -16,6 +17,7 @@ public class GameTimer : MonoBehaviour
 
     private void EndGame()
     {
+        SimpleGameStateManager.instance.ChangeGameState(Gamestate.GameOver);
         //TODO: end game stuff.
     }
 }

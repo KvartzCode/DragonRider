@@ -13,7 +13,7 @@ public class SimpleGameStateManager : MonoBehaviour
     public static SimpleGameStateManager instance;
     public Gamestate currentState;
 
-    public string[] sceneNames;
+    public string menuScene, gameScene, gameOverScene;
 
     public int accumulatedScore;
 
@@ -32,31 +32,35 @@ public class SimpleGameStateManager : MonoBehaviour
 
     private void Start()
     {
-       
+        
     }
 
 
     public void StartMenu()
     {
         //Add start gamestuff here
-        Debug.Log("Starting");
-        ChangeGameState(Gamestate.GameActive);   
-    }
-
-    public void StartGame()
-    {
-        //SceneManager.LoadScene(1);
+        if (menuScene != null)
+        {
+            SceneManager.LoadScene(menuScene);
+        }
     }
 
     public void SetGameActive()
     {
-        Debug.Log("Runnning");
+        if (gameScene != null)
+        {
+            SceneManager.LoadScene(gameScene);
+        }
     }
 
     public void GameOver()
     {
         accumulatedScore = ScoreManager.Instance.score;
-        SceneManager.LoadScene(3);
+
+        if (gameOverScene != null)
+        {
+            SceneManager.LoadScene(gameOverScene);
+        }
     }
 
 

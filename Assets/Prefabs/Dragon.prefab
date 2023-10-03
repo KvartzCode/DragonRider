@@ -961,6 +961,7 @@ MonoBehaviour:
   controllerGrabAction: {fileID: -7995296514417288499, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   controllerCanGrab: 0
   stickObject: {fileID: 0}
+  handController: {fileID: 0}
 --- !u!1 &2397983867325540538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1240,7 +1241,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.01
-  far clip plane: 20000
+  far clip plane: 12833
   field of view: 82
   orthographic: 0
   orthographic size: 5
@@ -1812,6 +1813,7 @@ GameObject:
   - component: {fileID: 1200957238085874631}
   - component: {fileID: 7765495047147510201}
   - component: {fileID: 6586207786623511926}
+  - component: {fileID: 5008452534808165175}
   m_Layer: 0
   m_Name: Right Controller
   m_TagString: Grabber
@@ -2176,6 +2178,24 @@ MonoBehaviour:
   controllerGrabAction: {fileID: 1311389208166808744, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   controllerCanGrab: 0
   stickObject: {fileID: 0}
+  handController: {fileID: 0}
+--- !u!114 &5008452534808165175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3753476273213044013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02747c30dcead544fab4e89aa26f783a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  handParent: {fileID: 0}
+  handMesh: {fileID: 0}
+  normalHand: {fileID: 0}
+  grabbingHand: {fileID: 0}
+  dragonController: {fileID: 0}
 --- !u!1 &3834889042066696019
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,7 +3271,7 @@ MonoBehaviour:
   verticalPositionStick: {fileID: 4668852347142382265}
   maxSpeed: 80
   minSpeed: 30
-  startSpeed: 30
+  startSpeed: 0
   acceleration: 1
   rollSpeed: 80
   yawSpeed: 60
