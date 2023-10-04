@@ -80,7 +80,7 @@ public class DragonController : MonoBehaviour
 
         float rollAngle = -rollInput * rollSpeed * Time.deltaTime;
 
-        float pitchAngle = -pitchInput * pitchSpeed * Time.deltaTime;
+        //float pitchAngle = -pitchInput * pitchSpeed * Time.deltaTime;
 
         float angle = transform.localEulerAngles.z;
 
@@ -111,32 +111,12 @@ public class DragonController : MonoBehaviour
 
         //Rotate
         Vector3 eulerAngles = transform.rotation.eulerAngles;
+        //eulerAngles.x += pitchAngle;
         eulerAngles.y += yawAngle;
-
-        eulerAngles.x += pitchAngle;
-        if (eulerAngles.x > 180 && eulerAngles.x < 315)
-        {
-            eulerAngles.x = 315;
-        }
-        if (eulerAngles.x < 180 && eulerAngles.x > 45)
-        {
-            eulerAngles.x = 45;
-        }
-
-
         eulerAngles.z += rollAngle;
-        if (eulerAngles.z > 180 && eulerAngles.z < 315)
-        {
-            eulerAngles.z = 315;
-        }
-        if (eulerAngles.z < 180 && eulerAngles.z > 45)
-        {
-            eulerAngles.z = 45;
-        }
-
         transform.rotation = Quaternion.Euler(eulerAngles);
 
-        //transform.Rotate(Vector3.right * -pitchInput * pitchSpeed * Time.fixedDeltaTime);
+        transform.Rotate(Vector3.right * -pitchInput * pitchSpeed * Time.fixedDeltaTime);
 
     }
 
