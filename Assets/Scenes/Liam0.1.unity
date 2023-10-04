@@ -6615,6 +6615,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DRFloatingIslandDraft6DragonEntranceFix
       objectReference: {fileID: 0}
+    - target: {fileID: 2380532864441575575, guid: 17b76fc576a24354288e9396fd1c347f, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: adb5a4ea4e093e1408a304317af8c110, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
