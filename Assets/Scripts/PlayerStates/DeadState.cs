@@ -7,6 +7,7 @@ public class DeadState : PlayerBaseState
     public override void EnterState(PlayerStateManager player)
     {
         GameObject spawnpoint = SpawnManager.Instance.GetClosetsSpawnPoint(player.transform.position);
+
         player.transform.position = spawnpoint.transform.position;
         player.ChangePlayerState(player.flyingState);
     }
