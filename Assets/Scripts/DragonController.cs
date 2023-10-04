@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -28,6 +29,9 @@ public class DragonController : MonoBehaviour
     private float initialHeight;
     private float currentSpeed;
 
+    private Tween rotateTween;
+
+
     private void Start()
     {
         initialHeight = transform.position.y;
@@ -45,6 +49,20 @@ public class DragonController : MonoBehaviour
     {
         //UpdateRotation();
         //UpdateMovement();
+    }
+
+
+    public void ResetRotation()
+    {
+        StopTweenRotation();
+        rotateTween = transform.DORotate(Vector3.zero, 3f);
+
+    }
+
+    public void StopTweenRotation()
+    {
+        if (rotateTween != null)
+            rotateTween.Kill();
     }
 
     public void UpdateRotation()

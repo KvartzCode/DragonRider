@@ -16,10 +16,15 @@ public class Grabber : MonoBehaviour
     bool tempIsGrabbed;
 
     public GameObject stickObject;
+    [SerializeField] HandController handController;
+    //public MeshFilter hand;
+    //private Vector3 originalPosition;
+    //private Quaternion originalRotation;
 
     void Start()
     {
-        
+        if (!handController)
+            handController = GetComponent<HandController>();
     }
 
     // Update is called once per frame
@@ -48,6 +53,8 @@ public class Grabber : MonoBehaviour
                 stickObject.GetComponent<VerticalPositionStick>().isGrabbed = false;
                 tempIsGrabbed = stickObject.GetComponent<VerticalPositionStick>().isGrabbed;
             }
+
+            handController.HandReleased();
         }
 
         if(controllerCanGrab)
@@ -58,12 +65,14 @@ public class Grabber : MonoBehaviour
                 Debug.Log("Grabbing");
                 stickObject.GetComponent<VerticalStick>().UpdateVerticalStick(this.gameObject);
                 stickObject.GetComponent<VerticalStick>().isGrabbed = true;
+                handController.HandGrabbed(stickObject.transform.GetChild(0));
             }
 
             if(stickObject.GetComponent<HorizontalStick>() != null)
             {
                 stickObject.GetComponent<HorizontalStick>().UpdateHorizontalStick(this.gameObject);
                 stickObject.GetComponent<HorizontalStick>().isGrabbed = true;
+                handController.HandGrabbed(stickObject.transform.GetChild(0));
             }
 
             if(stickObject.GetComponent <VerticalPositionStick>() != null)
@@ -80,6 +89,7 @@ public class Grabber : MonoBehaviour
                 }
                 tempIsGrabbed = stickObject.GetComponent<VerticalPositionStick>().isGrabbed;
                 stickObject.GetComponent<VerticalPositionStick>().UpdateVerticalStickLookAt(this.gameObject);
+                handController.HandGrabbed(stickObject.transform.GetChild(0));
             }
         }
 
