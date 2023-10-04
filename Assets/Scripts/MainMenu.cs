@@ -7,6 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private void Start()
+    {
+        var newPos = transform.position;
+        newPos.y = Camera.main.transform.position.y;
+        transform.position = newPos;
+    }
+
+
     public void StartGame()
     {
         SceneManager.LoadScene(1);
