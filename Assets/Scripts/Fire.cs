@@ -18,9 +18,15 @@ public class Fire : MonoBehaviour
     GameObject fireball;
 
     public float fireCooldown = 1f;
-    
+    public int continuousShotsFired;
+    public float timerBetweencontinuous = 0.1f;
+    public int maxBurst = 5;
+
     private float cooldownTimer = 0;
-    private bool hasFired;
+    private float singleshotTimer = 0;
+    public bool hasFired;
+    public bool hasFiredOnce;
+
 
 
     private void Update()
@@ -31,24 +37,44 @@ public class Fire : MonoBehaviour
             if (cooldownTimer <= 0)
             {
                 hasFired = false;
+                continuousShotsFired = 0;
+            }
+        }
+
+        if(hasFiredOnce)
+        {
+            singleshotTimer -= Time.deltaTime;
+            if(singleshotTimer <= 0)
+            {
+                hasFiredOnce = false;
             }
         }
 
         if (!hasFired && Input.GetMouseButtonDown(0) || !hasFired && fireInput.action.IsPressed())
         {
-            Shoot();
-            Debug.Log("Shooting");
+            if (!hasFiredOnce)
+            {
+                Shoot();
+                Debug.Log("Shooting");
+            }
         }
     }
 
     public void Shoot()
     {
+        continuousShotsFired++;
+
         if (fireballPrefab)
         {
             fireballObject = Instantiate(fireballPrefab, fireballSpawnPoint.transform.position, fireballSpawnPoint.transform.rotation);
             fireballObject.GetComponent<Fireball>().AddFireballForce(this.gameObject);
         }
-        cooldownTimer = fireCooldown;
-        hasFired = true;
+        singleshotTimer = timerBetweencontinuous;
+
+        if (continuousShotsFired >= maxBurst)
+        {
+            hasFired = true;
+            cooldownTimer = fireCooldown;
+        }
     }
 }
