@@ -47,7 +47,7 @@ public class SimpleGameStateManager : MonoBehaviour
 
     public void GameOver()
     {
-        accumulatedScore = ScoreManager.Instance.score;
+        accumulatedScore = ScoreManager.Instance.Score;
 
         if (gameOverScene != null)
         {
