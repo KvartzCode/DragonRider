@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class DragonController : MonoBehaviour
 {
@@ -27,8 +28,10 @@ public class DragonController : MonoBehaviour
     public float yawAngle = 0f;
 
     private float initialHeight;
-    private float currentSpeed;
+    public float currentSpeed;
 
+    private float clampRight = 270f;
+    private float clampLeft = 90f;
     private Tween rotateTween;
 
 
@@ -55,7 +58,7 @@ public class DragonController : MonoBehaviour
     public void ResetRotation()
     {
         StopTweenRotation();
-        rotateTween = transform.DORotate(Vector3.zero, 3f);
+        rotateTween = transform.DORotate(new Vector3(0, transform.eulerAngles.y, 0), 3f);
 
     }
 
@@ -125,13 +128,13 @@ public class DragonController : MonoBehaviour
 
 
         eulerAngles.z += rollAngle;
-        if (eulerAngles.z > 180 && eulerAngles.z < 315)
+        if (eulerAngles.z > 180 && eulerAngles.z < clampRight)
         {
-            eulerAngles.z = 315;
+            eulerAngles.z = clampRight;
         }
-        if (eulerAngles.z < 180 && eulerAngles.z > 45)
+        if (eulerAngles.z < 180 && eulerAngles.z > clampLeft)
         {
-            eulerAngles.z = 45;
+            eulerAngles.z = clampLeft;
         }
 
         transform.rotation = Quaternion.Euler(eulerAngles);
@@ -145,6 +148,7 @@ public class DragonController : MonoBehaviour
         if (verticalPositionStick.GetVerticalStickPosition() != 0f)
         {
             float stickValue = verticalPositionStick.GetVerticalStickPosition();
+
             if (currentSpeed < maxSpeed && stickValue > 0)
             {
                 currentSpeed += acceleration * stickValue;

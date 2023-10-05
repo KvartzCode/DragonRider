@@ -15,6 +15,6 @@ public abstract class PlayerBaseState
 
     public virtual void OnCollision(PlayerStateManager player, Collision collision)
     {
-
+        
     }
 }
