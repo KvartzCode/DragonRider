@@ -7,11 +7,15 @@ public class Fireball : MonoBehaviour
 {
     public float damage = 50;
     public float fireballImpulse = 100000;
-    private AudioSource audioSource;
-    public AudioClip fireball;
+    
 
     public float fireballDestroyTime = 5f;
     private float timer;
+
+    private AudioSource audioSource;
+    public AudioClip fireballWoosh;
+
+    public bool canPlaySound = false;
 
     // Start is called before the first frame update
     void Start()
@@ -19,10 +23,9 @@ public class Fireball : MonoBehaviour
         Rigidbody rb = GetComponent<Rigidbody>();
         //rb.AddForce(transform.forward * fireballImpulse, ForceMode.Impulse);
 
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource != null)
+        if(canPlaySound)
         {
-            AudioManager.instance.PlayAudio(audioSource, fireball);
+            AudioManager.instance.PlayAudio(audioSource, fireballWoosh);
         }
 
         Destroy(gameObject, 5f);
@@ -52,4 +55,7 @@ public class Fireball : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
+
 }

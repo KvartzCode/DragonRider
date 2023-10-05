@@ -50,11 +50,14 @@ public class Fire : MonoBehaviour
             }
         }
 
+       
+
         if (!hasFired && Input.GetMouseButtonDown(0) || !hasFired && fireInput.action.IsPressed())
         {
             if (!hasFiredOnce)
             {
                 Shoot();
+                
                 Debug.Log("Shooting");
             }
         }
@@ -68,6 +71,11 @@ public class Fire : MonoBehaviour
         {
             fireballObject = Instantiate(fireballPrefab, fireballSpawnPoint.transform.position, fireballSpawnPoint.transform.rotation);
             fireballObject.GetComponent<Fireball>().AddFireballForce(this.gameObject);
+            if (continuousShotsFired == 1)
+            {
+            fireballObject.GetComponent<Fireball>().canPlaySound = true;
+
+            }
         }
         singleshotTimer = timerBetweencontinuous;
 
