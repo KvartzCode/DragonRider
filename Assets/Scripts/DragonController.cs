@@ -30,8 +30,8 @@ public class DragonController : MonoBehaviour
     private float initialHeight;
     public float currentSpeed;
 
-    private float clampRight = 270f;
-    private float clampLeft = 90f;
+    private float clampRight = 290f;
+    private float clampLeft = 70f;
     private Tween rotateTween;
 
 
