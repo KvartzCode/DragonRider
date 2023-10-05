@@ -57,6 +57,7 @@ public class VerticalPositionStick : MonoBehaviour
             float lerpAngle = Mathf.LerpAngle(stickPivot.transform.localEulerAngles.x, 0f, percentComplete);
 
             stickPivot.transform.localEulerAngles = new Vector3(lerpAngle, stickPivot.transform.localEulerAngles.y, stickPivot.transform.localEulerAngles.z);
+            verticalRotation = 0;
         }
 
     }

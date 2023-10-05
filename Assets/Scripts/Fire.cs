@@ -13,9 +13,11 @@ public class Fire : MonoBehaviour
     [SerializeField]
     InputActionReference fireInput;
 
+    private GameObject fireballObject;
+
     GameObject fireball;
 
-    public float fireCooldown = 5;
+    public float fireCooldown = 1f;
     
     private float cooldownTimer = 0;
     private bool hasFired;
@@ -32,7 +34,7 @@ public class Fire : MonoBehaviour
             }
         }
 
-        if (!hasFired && Input.GetMouseButtonDown(0) || fireInput.action.IsPressed())
+        if (!hasFired && Input.GetMouseButtonDown(0) || !hasFired && fireInput.action.IsPressed())
         {
             Shoot();
             Debug.Log("Shooting");
@@ -43,7 +45,8 @@ public class Fire : MonoBehaviour
     {
         if (fireballPrefab)
         {
-            Instantiate(fireballPrefab, fireballSpawnPoint.transform.position, fireballSpawnPoint.transform.rotation);
+            fireballObject = Instantiate(fireballPrefab, fireballSpawnPoint.transform.position, fireballSpawnPoint.transform.rotation);
+            fireballObject.GetComponent<Fireball>().AddFireballForce(this.gameObject);
         }
         cooldownTimer = fireCooldown;
         hasFired = true;
