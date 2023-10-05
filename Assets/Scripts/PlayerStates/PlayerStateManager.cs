@@ -38,6 +38,10 @@ public class PlayerStateManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        currentState.OnCollision(this, collision);
+        if(collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Mountains"))
+        {
+            Debug.Log("Collided");
+            ChangePlayerState(deadState);
+        }
     }
 }
