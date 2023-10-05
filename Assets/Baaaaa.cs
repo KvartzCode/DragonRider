@@ -7,6 +7,7 @@ public class Baaaaa : MonoBehaviour
     public AudioClip Bהההההה;
     public AudioSource audioSource;
     private int Cooldown;
+    [SerializeField] float Timer = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +17,16 @@ public class Baaaaa : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Cooldown = Random.Range(1, 200);
-
-        if (Cooldown == 1)
+        Timer = Timer + Time.deltaTime;
+        Cooldown = Random.Range(1, 300);
+        if (Timer <= 10)
         {
-            AudioManager.instance.PlaySound(audioSource, Bהההההה, false);
+            if (Cooldown == 1)
+            {
+                AudioManager.instance.PlaySound(audioSource, Bהההההה, false);
+                Timer = 0;
+            }
+
         }
 
     }

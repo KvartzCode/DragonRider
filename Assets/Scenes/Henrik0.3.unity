@@ -6894,14 +6894,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Managers
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6137823160636179862, guid: 963fd4723f4e1d448aed8df4367fb467, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2716384147233319710, guid: 963fd4723f4e1d448aed8df4367fb467, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 294258207}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 963fd4723f4e1d448aed8df4367fb467, type: 3}
 --- !u!1 &247799440
 GameObject:
@@ -7727,28 +7723,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4509256215674223508, guid: 17b76fc576a24354288e9396fd1c347f, type: 3}
---- !u!1 &294258201 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2716384147233319710, guid: 963fd4723f4e1d448aed8df4367fb467, type: 3}
-  m_PrefabInstance: {fileID: 244246910}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &294258207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 294258201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eeb0423433c3c3d418c1ccae90a5e9eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentState: 0
-  menuScene: 
-  gameScene: Henrik0.3
-  gameOverScene: GameOverScene
-  accumulatedScore: 0
 --- !u!1 &294816106
 GameObject:
   m_ObjectHideFlags: 0
@@ -40723,7 +40697,12 @@ MonoBehaviour:
   fireballPrefab: {fileID: 5442654239426728931, guid: 5b67793bfe382084e808ed63120b42a7, type: 3}
   fireballSpawnPoint: {fileID: 6802358186227722065}
   fireInput: {fileID: 83097790271614945, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  fireCooldown: 5
+  fireCooldown: 1
+  continuousShotsFired: 0
+  timerBetweencontinuous: 0.1
+  maxBurst: 5
+  hasFired: 0
+  hasFiredOnce: 0
 --- !u!1 &4116849478688191729
 GameObject:
   m_ObjectHideFlags: 0

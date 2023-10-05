@@ -1,19 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour
 {
     public float damage = 50;
     public float fireballImpulse = 100000;
+    private AudioSource audioSource;
+    public AudioClip fireball;
+
+    public float fireballDestroyTime = 5f;
+    private float timer;
 
     // Start is called before the first frame update
     void Start()
     {
         Rigidbody rb = GetComponent<Rigidbody>();
         //rb.AddForce(transform.forward * fireballImpulse, ForceMode.Impulse);
-        
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource != null)
+        {
+            AudioManager.instance.PlayAudio(audioSource, fireball);
+        }
+
         Destroy(gameObject, 5f);
+    }
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer > fireballDestroyTime) 
+        {
+            Destroy(gameObject);
+        }
     }
 
 
@@ -22,5 +43,13 @@ public class Fireball : MonoBehaviour
     {
         Vector3 tmpVel = relativeObject.GetComponent<Rigidbody>().velocity;
         GetComponent<Rigidbody>().AddForce((transform.forward * fireballImpulse) + tmpVel, ForceMode.Impulse);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(gameObject);
+        }
     }
 }
