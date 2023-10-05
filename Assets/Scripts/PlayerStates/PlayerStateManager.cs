@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class PlayerStateManager : MonoBehaviour
 
     public DeadState deadState = new DeadState();
     public FlyingState flyingState = new FlyingState();
+
+    public GameObject blackScreenObject;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +45,22 @@ public class PlayerStateManager : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Mountains"))
         {
             Debug.Log("Collided");
+            ChangePanelToBlack();
             ChangePlayerState(deadState);
         }
+    }
+
+    public void ChangePanelToBlack()
+    {
+        Color tmpColor = blackScreenObject.GetComponent<Image>().color;
+        tmpColor.a = 1f;
+        blackScreenObject.GetComponent<Image>().color = tmpColor;
+    }
+
+    public void ChangePanelToTransparent()
+    {
+        Color tmpColor = blackScreenObject.GetComponent<Image>().color;
+        tmpColor.a = 0f;
+        blackScreenObject.GetComponent<Image>().color = tmpColor;
     }
 }
