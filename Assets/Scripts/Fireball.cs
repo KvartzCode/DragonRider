@@ -52,6 +52,7 @@ public class Fireball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            
             Destroy(gameObject);
         }
     }

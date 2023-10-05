@@ -45,7 +45,8 @@ public class PlayerStateManager : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Mountains"))
         {
             Debug.Log("Collided");
-            ChangePanelToBlack();
+           
+            //ChangePanelToBlack();
             ChangePlayerState(deadState);
         }
     }
