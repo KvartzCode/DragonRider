@@ -7,6 +7,7 @@ public class FlyingState : PlayerBaseState
 
     public override void EnterState(PlayerStateManager player)
     {
+        player.hasCollided = false;
     }
 
     public override void UpdateState(PlayerStateManager player)
