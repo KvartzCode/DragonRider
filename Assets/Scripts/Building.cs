@@ -36,7 +36,7 @@ public class Building : MonoBehaviour
     public void StartKillTower()
     {
         //towerRenderer.enabled = false;
-        smoke.active = true;
+        smoke.SetActive(true);
         StartCoroutine(DestroyTower());
     }
 

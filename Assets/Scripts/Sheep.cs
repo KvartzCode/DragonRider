@@ -15,7 +15,7 @@ public class Sheep : MonoBehaviour
     {
         Debug.Log("U fukkin killed me");
         sheepRenderer.enabled = false;
-        smoke.active = true;
+        smoke.SetActive(true);
         StartCoroutine(KillSheep());
     }
 
