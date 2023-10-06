@@ -21,7 +21,8 @@ public class DeadState : PlayerBaseState
 
         if(timeLeft < 0)
         {
-            RespawnPlayer(player, spawnpoint);
+            SimpleGameStateManager.instance.GameOver();
+            //RespawnPlayer(player, spawnpoint);
             //player.ChangePlayerState(player.flyingState);
         }
     }
