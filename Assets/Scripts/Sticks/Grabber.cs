@@ -62,7 +62,7 @@ public class Grabber : MonoBehaviour
             //Debug.Log("Trying to grab");
             if(stickObject.GetComponent<VerticalStick>() != null ) 
             {
-                Debug.Log("Grabbing");
+                //Debug.Log("Grabbing");
                 stickObject.GetComponent<VerticalStick>().UpdateVerticalStick(this.gameObject);
                 stickObject.GetComponent<VerticalStick>().isGrabbed = true;
                 handController.HandGrabbed(stickObject.transform.GetChild(0));
