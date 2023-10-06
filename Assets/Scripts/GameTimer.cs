@@ -18,7 +18,7 @@ public class GameTimer : MonoBehaviour
 
         if (extraTime - Timer > 1)
         {
-            extraTime = Mathf.RoundToInt(Timer);
+            extraTime = (int)Timer;
             timerDisplay.SetTime(extraTime);
         }
 
