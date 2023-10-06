@@ -5647,7 +5647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7140f307b7fe840a3489f5854e72b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 50
+  damage: 100
   fireballImpulse: 15000
   fireballDestroyTime: 20
   fireballWoosh: {fileID: 8300000, guid: 1d0fc39521a06204d970bf303c4d7d3e, type: 3}
