@@ -60187,8 +60187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minuteWheel: {fileID: 7246906358452428345}
-  leftSecondWheel: {fileID: 8997756153401259059}
-  rightSecondWheel: {fileID: 7900092699920342518}
+  leftSecondWheel: {fileID: 7900092699920342518}
+  rightSecondWheel: {fileID: 8997756153401259059}
 --- !u!4 &6886462878783159164
 Transform:
   m_ObjectHideFlags: 0
