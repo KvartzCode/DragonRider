@@ -382,7 +382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bdd613c9bd79a84aaf56c02fdfebd40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destructionPoints: 75
+  destructionPoints: 200
   currentHealth: 0
   maxHealth: 50
   deathTimer: 5
