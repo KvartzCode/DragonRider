@@ -23,6 +23,9 @@ public class TimerDisplay : MonoBehaviour
         TimeSpan ts = TimeSpan.FromSeconds(secondsTotal);
         minuteWheel.UpdateValue(ts.Minutes);
         leftSecondWheel.UpdateValue(ts.Seconds.ToArray()[0]);
-        rightSecondWheel.UpdateValue(ts.Seconds.ToArray()[1]);
+        if (ts.Seconds.ToArray().Length < 2)
+            rightSecondWheel.UpdateValue(0);
+        else
+            rightSecondWheel.UpdateValue(ts.Seconds.ToArray()[1]);
     }
 }

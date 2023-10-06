@@ -41,6 +41,9 @@ public class SimpleGameStateManager : MonoBehaviour
     {
         if (gameScene != null)
         {
+            if (ScoreManager.Instance != null)
+                ScoreManager.Instance.ResetScore();
+
             SceneManager.LoadScene(gameScene);
         }
     }

@@ -20,6 +20,7 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(Instance);
         }
+        DontDestroyOnLoad(this);
     }
 
     public void UpdateScore(int scoreToAdd)
@@ -27,5 +28,10 @@ public class ScoreManager : MonoBehaviour
         Score += scoreToAdd;
         scoreDisplay?.AddScore(scoreToAdd);
         Debug.Log(Score);
+    }
+
+    public void ResetScore()
+    {
+        Score = 0;
     }
 }

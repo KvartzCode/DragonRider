@@ -8811,6 +8811,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333967120}
   m_Mesh: {fileID: -4179581466302418777, guid: fbe4e0cdccf642d41b26ec5b9351c9eb, type: 3}
+--- !u!1 &339585506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 339585508}
+  - component: {fileID: 339585507}
+  m_Layer: 0
+  m_Name: ScoreManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &339585507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339585506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545cc4cf009056b4fae6383e32764669, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreDisplay: {fileID: 1592736234}
+--- !u!4 &339585508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339585506}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.3072405, y: -0.06716834, z: -13.960285}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &344719120
 GameObject:
   m_ObjectHideFlags: 0
@@ -40905,6 +40950,7 @@ PrefabInstance:
       objectReference: {fileID: 1592736234}
     m_RemovedComponents:
     - {fileID: 1759212088857368175, guid: 963fd4723f4e1d448aed8df4367fb467, type: 3}
+    - {fileID: 6899165319439408852, guid: 963fd4723f4e1d448aed8df4367fb467, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -54842,7 +54888,7 @@ GameObject:
   - component: {fileID: 1195463751274208044}
   - component: {fileID: 7246906358452428345}
   m_Layer: 0
-  m_Name: ScoreWheel (3)
+  m_Name: TimeWheel (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59901,7 +59947,7 @@ GameObject:
   - component: {fileID: 5202200038807409239}
   - component: {fileID: 7900092699920342518}
   m_Layer: 0
-  m_Name: ScoreWheel (2)
+  m_Name: TimeWheel (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -60141,8 +60187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minuteWheel: {fileID: 7246906358452428345}
-  leftSecondWheel: {fileID: 7900092699920342518}
-  rightSecondWheel: {fileID: 8997756153401259059}
+  leftSecondWheel: {fileID: 8997756153401259059}
+  rightSecondWheel: {fileID: 7900092699920342518}
 --- !u!4 &6886462878783159164
 Transform:
   m_ObjectHideFlags: 0
@@ -60622,7 +60668,7 @@ GameObject:
   - component: {fileID: 3809672696143055776}
   - component: {fileID: 8997756153401259059}
   m_Layer: 0
-  m_Name: ScoreWheel (1)
+  m_Name: TimeWheel (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62219,6 +62265,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1701378121}
+  - {fileID: 339585508}
   - {fileID: 143734846}
   - {fileID: 654640124}
   - {fileID: 743323999}
