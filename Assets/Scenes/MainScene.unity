@@ -17799,7 +17799,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 5a3471bc6b152a04fa8ea7c63ef998d5, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 7d21ef7f5f4932e429252ca8315f0ec8, type: 2}
+      objectReference: {fileID: 2100000, guid: bb4dd519e520a244cb8700330f48f3e2, type: 2}
     - target: {fileID: 919132149155446097, guid: 5a3471bc6b152a04fa8ea7c63ef998d5, type: 3}
       propertyPath: m_Name
       value: Saddle_LOW_with_UV
