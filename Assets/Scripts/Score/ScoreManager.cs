@@ -5,8 +5,10 @@ using UnityEngine;
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
+    public int Score { get; private set; }
 
-    public int score;
+    [SerializeField] ScoreDisplay scoreDisplay;
+
 
     private void Awake()
     {
@@ -18,11 +20,18 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(Instance);
         }
+        DontDestroyOnLoad(this);
     }
 
     public void UpdateScore(int scoreToAdd)
     {
-        score += scoreToAdd;
-        Debug.Log(score);
+        Score += scoreToAdd;
+        scoreDisplay?.AddScore(scoreToAdd);
+        Debug.Log(Score);
+    }
+
+    public void ResetScore()
+    {
+        Score = 0;
     }
 }

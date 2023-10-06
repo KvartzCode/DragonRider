@@ -42,6 +42,7 @@ public class HandController : MonoBehaviour
     public void HandGrabbed(Transform target)
     {
         handMesh.mesh = grabbingHand;
+        handMesh.GetComponent<MeshCollider>().sharedMesh = grabbingHand;
         handParent.transform.SetParent(target);
         handParent.transform.localPosition = Vector3.zero;
         handMesh.transform.localPosition = new Vector3(0.0449f, -0.0056f, -0.0004f);
@@ -55,6 +56,7 @@ public class HandController : MonoBehaviour
     public void HandReleased()
     {
         handMesh.mesh = normalHand;
+        handMesh.GetComponent<MeshCollider>().sharedMesh = normalHand;
         handParent.transform.SetParent(transform);
         handParent.transform.localPosition = Vector3.zero;
         handParent.transform.localRotation = new Quaternion();

@@ -13,6 +13,6 @@ public class EndScreenScore : MonoBehaviour
         if (!scoreText)
             scoreText = GetComponent<TMP_Text>();
 
-        scoreText.text = ScoreManager.Instance?.score.ToString();
+        scoreText.text = ScoreManager.Instance?.Score.ToString();
     }
 }

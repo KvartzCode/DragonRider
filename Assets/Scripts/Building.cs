@@ -7,6 +7,10 @@ public class Building : MonoBehaviour
     public int destructionPoints = 200;
     public float currentHealth;
     public float maxHealth;
+    public float deathTimer = 5f;
+
+    //public MeshRenderer towerRenderer;
+    public GameObject smoke;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +27,24 @@ public class Building : MonoBehaviour
 
         if(currentHealth <= 0f)
         {
-            ScoreManager.Instance.UpdateScore(destructionPoints);
-            Destroy(gameObject);
+            StartKillTower();
+            //ScoreManager.Instance.UpdateScore(destructionPoints);
+            //Destroy(gameObject);
         }
+    }
+
+    public void StartKillTower()
+    {
+        //towerRenderer.enabled = false;
+        smoke.SetActive(true);
+        StartCoroutine(DestroyTower());
+    }
+
+    public IEnumerator DestroyTower()
+    {
+        yield return new WaitForSeconds(deathTimer);
+        Debug.Log("U fukkin Killed me some more");
+        ScoreManager.Instance.UpdateScore(destructionPoints);
+        Destroy(gameObject);
     }
 }

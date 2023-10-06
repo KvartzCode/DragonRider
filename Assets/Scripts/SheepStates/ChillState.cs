@@ -20,7 +20,7 @@ public class ChillState : SheepBaseState
     {
         chillTime = Random.Range(30.0f, 60.0f);
         currentTimer = chillTime;
-        Debug.Log("Chillin");
+        //Debug.Log("Chillin");
     }
 
     public override void UpdateState(SheepStateManager sheep)

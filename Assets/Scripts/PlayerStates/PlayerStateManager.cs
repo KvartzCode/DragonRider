@@ -15,6 +15,8 @@ public class PlayerStateManager : MonoBehaviour
 
     public GameObject blackScreenObject;
 
+    public bool hasCollided = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +44,17 @@ public class PlayerStateManager : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Mountains"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Mountains"))
         {
-            Debug.Log("Collided");
-            ChangePanelToBlack();
-            ChangePlayerState(deadState);
+            if (!hasCollided)
+            {
+                Debug.Log("Collided");
+
+                //ChangePanelToBlack();
+                hasCollided = true;
+                ChangePlayerState(deadState);
+                ChangePanelToBlack();
+            }
         }
     }
 

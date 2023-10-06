@@ -41,13 +41,16 @@ public class SimpleGameStateManager : MonoBehaviour
     {
         if (gameScene != null)
         {
+            if (ScoreManager.Instance != null)
+                ScoreManager.Instance.ResetScore();
+
             SceneManager.LoadScene(gameScene);
         }
     }
 
     public void GameOver()
     {
-        accumulatedScore = ScoreManager.Instance.score;
+        accumulatedScore = ScoreManager.Instance.Score;
 
         if (gameOverScene != null)
         {

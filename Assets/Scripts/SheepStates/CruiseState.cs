@@ -24,7 +24,7 @@ public class CruiseState : SheepBaseState
             isNotEmpty = true;
             cruiseTime = Random.Range(5f, 20f);
             currentTimer = cruiseTime;
-            Debug.Log("Cruising");
+            //Debug.Log("Cruising");
         }
     }
 

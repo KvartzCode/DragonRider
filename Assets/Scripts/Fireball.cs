@@ -25,10 +25,13 @@ public class Fireball : MonoBehaviour
 
         if(canPlaySound)
         {
-            AudioManager.instance.PlayAudio(audioSource, fireballWoosh);
+            if (audioSource != null && fireballWoosh != null)
+            {
+                AudioManager.instance.PlayAudio(audioSource, fireballWoosh);
+            }
         }
 
-        Destroy(gameObject, 5f);
+        Destroy(this.gameObject, 5f);
     }
 
     private void Update()
@@ -36,7 +39,7 @@ public class Fireball : MonoBehaviour
         timer += Time.deltaTime;
         if (timer > fireballDestroyTime) 
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
         }
     }
 
@@ -52,6 +55,7 @@ public class Fireball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            
             Destroy(gameObject);
         }
     }
