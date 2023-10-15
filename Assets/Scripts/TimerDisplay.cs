@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TimerDisplay : MonoBehaviour
@@ -10,22 +8,22 @@ public class TimerDisplay : MonoBehaviour
     [SerializeField] ScoreWheel rightSecondWheel;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         TimeSpan ts = TimeSpan.FromSeconds(300);
         Debug.Log(ts.ToString());
     }
 
-
     public void SetTime(int secondsTotal)
     {
         TimeSpan ts = TimeSpan.FromSeconds(secondsTotal);
+        int[] seconds = ts.Seconds.ToArray();
+
+        if (seconds.Length < 2)
+            seconds = new int[] { 0, seconds[0] };
+
         minuteWheel.UpdateValue(ts.Minutes);
-        leftSecondWheel.UpdateValue(ts.Seconds.ToArray()[0]);
-        if (ts.Seconds.ToArray().Length < 2)
-            rightSecondWheel.UpdateValue(0);
-        else
-            rightSecondWheel.UpdateValue(ts.Seconds.ToArray()[1]);
+        leftSecondWheel.UpdateValue(seconds[0]);
+        rightSecondWheel.UpdateValue(seconds[1]);
     }
 }
